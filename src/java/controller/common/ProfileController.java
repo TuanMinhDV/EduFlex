@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import model.Account;
+import model.Constants;
 
 @MultipartConfig
 @WebServlet(name = "ProfileController", urlPatterns = {"/profile"})
@@ -39,7 +40,7 @@ public class ProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -82,7 +83,7 @@ public class ProfileController extends HttpServlet {
             throws ServletException, IOException {
         String status = null;
         String imageName = null;
-        String savePath = "F:/FPTU/Sem5/SWP391/ImageRepository/";
+        String savePath = Constants.SAVE_PATH;
         File file = new File(savePath);
         if (!file.exists()) {
             file.mkdirs();
@@ -98,7 +99,7 @@ public class ProfileController extends HttpServlet {
         if (filePart.getSize() > 0) {
             imageName = filePart.getSubmittedFileName();
             file = new File(savePath + imageName);
-            try ( InputStream fileContent = filePart.getInputStream();  FileOutputStream fos = new FileOutputStream(file)) {
+            try (InputStream fileContent = filePart.getInputStream(); FileOutputStream fos = new FileOutputStream(file)) {
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 while ((bytesRead = fileContent.read(buffer)) != -1) {
@@ -112,20 +113,23 @@ public class ProfileController extends HttpServlet {
         } else {
             status = "failed";
         }
-        session.removeAttribute("account");
-        session.setAttribute("account", ad.getAccountById(acc.getAccount_id()));
-        Account profileAccount = ad.getAccountProfile(acc.getAccount_id());
-        Gson gson = new Gson();
-        String profile = gson.toJson(profileAccount);
-        status = gson.toJson(status);
-        JsonObject jsonobj = new JsonObject();
-        jsonobj.addProperty("profile", profile);
-        jsonobj.addProperty("status", status);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(jsonobj.toString());
-    }
+        if ("success".equals(status)) {
+            //ad.updateProfile(fullname, birthday, phone, imageName, acc.getAccount_id());
+            session.removeAttribute("account");
+            session.setAttribute("account", ad.getAccountById(acc.getAccount_id()));
+            Account profileAccount = ad.getAccountProfile(acc.getAccount_id());
+            Gson gson = new Gson();
+            String profile = gson.toJson(profileAccount);
+            status = gson.toJson(status);
+            JsonObject jsonobj = new JsonObject();
+            jsonobj.addProperty("profile", profile);
+            jsonobj.addProperty("status", status);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(jsonobj.toString());
+        }
 
+    }
 
     /**
      * Returns a short description of the servlet.
