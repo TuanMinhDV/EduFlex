@@ -16,10 +16,6 @@ import model.Category;
 
 import model.Subject;
 
-/**
- *
- * @author lam12
- */
 public class SubjectDAO extends DBContext {
 
     // get subject of lecturer and search ajax

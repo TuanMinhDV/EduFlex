@@ -10,7 +10,7 @@ public class Constants {
 
     public static String GOOGLE_CLIENT_SECRET = "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";
 
-    public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/OCMS_3/login";
+    public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/EduFlex_Demo3/login";
 
     public static String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
 
@@ -19,4 +19,6 @@ public class Constants {
     public static String GOOGLE_GRANT_TYPE = "authorization_code";
 
     public static String PASSWORD_REGEX = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%]).{8,20}";
+    
+    public static String SAVE_PATH = "F:/SWP392_Code/ImagesRepository/";
 }

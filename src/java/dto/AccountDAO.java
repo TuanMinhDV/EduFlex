@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
+import model.Constants;
 import security.MD5Encryption;
 
 public class AccountDAO extends DBContext {
@@ -275,7 +276,7 @@ public class AccountDAO extends DBContext {
                 + "      ,[phone] = ?\n"
                 + " WHERE account_id = ?";
         if (fileName != null) {
-            String pathToFile = "D:/FPTU/Sem5/SWP391/ImageRepository/";
+            String pathToFile = Constants.SAVE_PATH;
             File avatarImage = new File(pathToFile + fileName);
             try ( InputStream avatarStream = new FileInputStream(avatarImage)) {
                 PreparedStatement st = connection.prepareStatement(query1);

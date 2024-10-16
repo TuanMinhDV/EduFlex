@@ -133,7 +133,7 @@
 
                 <!-- Courses area start -->
                 <div class="game-section" >
-                    <h2 class="line-title" style="font-family: Roboto, sans-serif; font-size: 20px; margin-left: 15% ">Season Discount</h2>
+                    <h2 class="line-title" style="font-family: Roboto, sans-serif; font-size: 20px; margin-left: 15%j ">Season Discount</h2>
 
                     <div class="courses-area section-padding40 fix">
                         <div class="container">

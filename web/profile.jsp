@@ -330,7 +330,7 @@
                     var formData = new FormData($('#profileForm')[0]);
 
                     $.ajax({
-                        url: '/holalearn/profile',
+                        url: '/EduFlex_Demo3/profile',
                         type: 'POST',
                         dataType: 'json',
                         data: formData,
@@ -339,13 +339,17 @@
                         success: function (response) {
                             var profile = JSON.parse(response.profile);
                             profile1 = JSON.parse(response.profile);
+                            //profile = JSON.parse(response.profile);
                             var status = JSON.parse(response.status);
+                            //Update
                             $('img#image_profile').attr('src', 'data:image/jpeg;base64,' + profile.avatar);
                             $('input[id="username"]').val(profile.username);
-                            $('input[class="email"]').val(profile.email);
+                            $('input[id="email"]').val(profile.email);
                             $('input[id="fullname"]').val(profile.fullname);
                             $('input[id="birthdate"]').val(profile.dob);
                             $('input[id="phone"]').val(profile.phone);
+                            //Hien Thi ??
+                            //profile1 = profile;
                             $('#save_profile, #reset_profile, #profile_div').hide();
                             $('#update_profile').show();
                             $('#fullname, #birthdate, #phone').attr('disabled', 'disabled');
