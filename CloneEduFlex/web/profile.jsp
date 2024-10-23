@@ -330,7 +330,7 @@
                     var formData = new FormData($('#profileForm')[0]);
 
                     $.ajax({
-                        url: '/EduFlex_Demo3/profile',
+                        url: '/CloneEduFlex/profile',
                         type: 'POST',
                         dataType: 'json',
                         data: formData,
